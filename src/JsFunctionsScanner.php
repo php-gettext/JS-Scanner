@@ -9,14 +9,15 @@ use Peast\Traverser;
 class JsFunctionsScanner implements FunctionsScannerInterface
 {
     protected $validFunctions;
-    protected $parser = ['latest', []];
+    protected $parser;
 
     public function __construct(array $validFunctions = null)
     {
         $this->validFunctions = $validFunctions;
+        $this->parser('latest');
     }
 
-    public function parser(string $version, array $options): self
+    public function parser(string $version, array $options = ['comments' => true]): self
     {
         $this->parser = [$version, $options];
 

@@ -13,7 +13,7 @@ fn9(ARG_8);
 /* Comment to fn10 */ fn10({});
 (function () {
     //Related comment 1
-    fn11(/* ALLOW: Related comment 2 */ `arg9`, 'arg10' /* No related comment 3 */);
+    fn11(/* ALLOW: Related comment 2 */ `arg9`, 'arg10' /* No related comment 3 */, `ignored dynamic ${value}`);
     
     /*
     Related comment 
