@@ -20,7 +20,6 @@
     "require": {
         "php": "^7.2",
         "gettext/gettext": "dev-v5-dev",
-        "nikic/php-parser": "^4.2",
         "mck89/peast": "^1.9"
     },
     "require-dev": {
