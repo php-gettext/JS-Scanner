@@ -24,7 +24,7 @@ class JsFunctionsScanner implements FunctionsScannerInterface
         return $this;
     }
 
-    public function scan(string $code, string $filename = null): array
+    public function scan(string $code, string $filename): array
     {
         list($version, $options) = $this->parser;
 
