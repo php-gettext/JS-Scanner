@@ -19,7 +19,7 @@
     },
     "require": {
         "php": "^7.2",
-        "gettext/gettext": "dev-v5-dev",
+        "gettext/gettext": "^5.0.0",
         "mck89/peast": "^1.9"
     },
     "require-dev": {
