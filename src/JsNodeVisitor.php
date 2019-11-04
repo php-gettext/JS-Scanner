@@ -13,7 +13,7 @@ class JsNodeVisitor
     protected $filename;
     protected $functions = [];
 
-    public function __construct(string $filename = null, array $validFunctions = null)
+    public function __construct(string $filename, array $validFunctions = null)
     {
         $this->filename = $filename;
         $this->validFunctions = $validFunctions;
