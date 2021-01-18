@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
-[![Build Status][ico-travis]][link-travis]
+![Build Status][ico-ga]
 [![Quality Score][ico-scrutinizer]][link-scrutinizer]
 [![Total Downloads][ico-downloads]][link-downloads]
 
@@ -52,11 +52,10 @@ The MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
 
 [ico-version]: https://img.shields.io/packagist/v/gettext/js-scanner.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/php-gettext/JS-Scanner/master.svg?style=flat-square
+[ico-ga]: https://github.com/php-gettext/PHP-Scanner/workflows/testing/badge.svg
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/g/php-gettext/JS-Scanner.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/gettext/js-scanner.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/gettext/js-scanner
-[link-travis]: https://travis-ci.org/php-gettext/JS-Scanner
 [link-scrutinizer]: https://scrutinizer-ci.com/g/php-gettext/JS-Scanner
 [link-downloads]: https://packagist.org/packages/gettext/js-scanner
