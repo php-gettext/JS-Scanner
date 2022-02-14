@@ -28,3 +28,6 @@ fn9(ARG_8);
     );
 })
 fn13(fn14(fn15('foo')));
+
+// https://github.com/php-gettext/JS-Scanner/issues/3
+var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol['for']('react.element') || 0xeac7;

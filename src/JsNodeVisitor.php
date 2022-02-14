@@ -87,7 +87,12 @@ class JsNodeVisitor
             case 'Identifier':
                 return $callee->getName();
             case 'MemberExpression':
-                return $callee->getProperty()->getName();
+                $property = $callee->getProperty();
+
+                if ($property->getType() === 'Identifier') {
+                    return $property->getName();
+                }
+                return null;
             default:
                 return null;
         }
