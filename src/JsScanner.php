@@ -15,6 +15,7 @@ class JsScanner extends CodeScanner
     protected $functions = [
         'gettext' => 'gettext',
         '__' => 'gettext',
+        '_' => 'gettext',
         'ngettext' => 'ngettext',
         'n__' => 'ngettext',
         'pgettext' => 'pgettext',
