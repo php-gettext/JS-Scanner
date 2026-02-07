@@ -3,9 +3,14 @@ declare(strict_types = 1);
 
 namespace Gettext\Scanner;
 
+use InvalidArgumentException;
 use Peast\Syntax\Node\CallExpression;
 use Peast\Syntax\Node\Comment;
+use Peast\Syntax\Node\Identifier;
+use Peast\Syntax\Node\Literal;
+use Peast\Syntax\Node\MemberExpression;
 use Peast\Syntax\Node\Node;
+use Peast\Syntax\Node\TemplateLiteral;
 
 class JsNodeVisitor
 {
@@ -13,15 +18,15 @@ class JsNodeVisitor
     protected $filename;
     protected $functions = [];
 
-    public function __construct(string $filename, array $validFunctions = null)
+    public function __construct(string $filename, ?array $validFunctions = null)
     {
         $this->filename = $filename;
         $this->validFunctions = $validFunctions;
     }
 
-    public function __invoke(Node $node)
+    public function __invoke(Node $node): void
     {
-        if ($node->getType() === 'CallExpression') {
+        if ($node instanceof CallExpression) {
             $function = $this->createFunction($node);
 
             if ($function) {
@@ -55,24 +60,20 @@ class JsNodeVisitor
         static::addComments($function, $node->getCallee());
 
         foreach ($node->getArguments() as $argument) {
-            switch ($argument->getType()) {
-                case 'Literal':
-                    $function->addArgument($argument->getValue());
-                    static::addComments($function, $argument);
-                    break;
-                case 'TemplateLiteral':
-                    if ($argument->getExpressions()) {
-                        $function->addArgument();
-                        break;
-                    }
-
+            if ($argument instanceof Literal) {
+                $function->addArgument($argument->getValue());
+                static::addComments($function, $argument);
+            } elseif ($argument instanceof TemplateLiteral) {
+                if ($argument->getExpressions()) {
+                    $function->addArgument();
+                } else {
                     $quasis = $argument->getQuasis();
                     $quasis = array_shift($quasis);
                     $function->addArgument($quasis->getValue());
                     static::addComments($function, $argument);
-                    break;
-                default:
-                    $function->addArgument();
+                }
+            } else {
+                $function->addArgument();
             }
         }
 
@@ -83,19 +84,15 @@ class JsNodeVisitor
     {
         $callee = $node->getCallee();
 
-        switch ($callee->getType()) {
-            case 'Identifier':
-                return $callee->getName();
-            case 'MemberExpression':
-                $property = $callee->getProperty();
-
-                if ($property->getType() === 'Identifier') {
-                    return $property->getName();
-                }
-                return null;
-            default:
-                return null;
+        if ($callee instanceof Identifier) {
+            return $callee->getName();
+        } elseif ($callee instanceof MemberExpression) {
+            $property = $callee->getProperty();
+            if ($property instanceof Identifier) {
+                return $property->getName();
+            }
         }
+        return null;
     }
 
     protected static function addComments(ParsedFunction $function, Node $node): void
@@ -109,7 +106,7 @@ class JsNodeVisitor
     {
         $text = $comment->getText();
 
-        $lines = array_map(function ($line) {
+        $lines = array_map(function ($line): string {
             $line = ltrim($line, "#*/ \t");
             $line = rtrim($line, "#*/ \t");
             return trim($line);

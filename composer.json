@@ -26,7 +26,9 @@
         "phpunit/phpunit": "^8.0",
         "squizlabs/php_codesniffer": "^3.0",
         "oscarotero/php-cs-fixer-config": "^1.0",
-        "friendsofphp/php-cs-fixer": "^2.15"
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "phpstan/phpstan": "^1|^2",
+        "rector/rector": "^1|^2"
     },
     "autoload": {
         "psr-4": {
@@ -41,8 +43,10 @@
     "scripts": {
         "test": [
             "phpunit",
-            "phpcs"
+            "phpcs",
+            "phpstan"
         ],
-        "cs-fix": "php-cs-fixer fix"
+        "cs-fix": "php-cs-fixer fix",
+        "rector": "rector process"
     }
 }

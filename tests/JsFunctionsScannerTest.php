@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class JsFunctionsScannerTest extends TestCase
 {
-    public function testJsFunctionsExtractor()
+    public function testJsFunctionsExtractor(): void
     {
         $scanner = new JsFunctionsScanner();
         $file = __DIR__.'/assets/functions.js';
